@@ -1,24 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header';
+import "./index.css";
+import Home from './pages/Home';
+import {Routes,Route} from "react-router-dom"
+import Coin from './pages/Coin';
+import {getTrendingCoin,getCoins} from "./features/trendingCoinSlice";
+import {useSelector,useDispatch} from "react-redux";
+import {getScreenWidth} from "./features/headerSlice";
 
 function App() {
+ const dispatch=useDispatch();
+ const currencyRedux=useSelector((state:any)=>state.header.currency)
+ const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+const screenWidth=useSelector((state:any)=>state.header.screenWidth);
+const isChange=useSelector((state:any)=>state.header.isChange)
+
+
+ React.useEffect(() => {
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  window.addEventListener("resize", handleResize);
+
+  return () => {
+    window.removeEventListener("resize", handleResize);
+  };
+}, [window]);
+
+React.useEffect(()=>{
+  dispatch(getScreenWidth({required:windowWidth}))
+},[windowWidth,dispatch])
+
+ React.useEffect(()=>{
+   dispatch(getTrendingCoin(currencyRedux))
+ },[dispatch,currencyRedux,isChange])
+
+ React.useEffect(()=>{
+  dispatch(getCoins(currencyRedux))
+},[dispatch,currencyRedux,isChange])
+
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+  <Header/>
+  <Routes>
+    <Route path="/" element={<Home/>}/>
+    <Route path="coins/:id" element={<Coin/>}/>
+  </Routes>
     </div>
   );
 }
