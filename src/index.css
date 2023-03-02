@@ -64,11 +64,11 @@ a{
    justify-content: center;
 }
 .home-title{
-  margin-top:20px;
+  padding:20px;
   font-family: 'Montserrat', sans-serif;
   color:black;
   font-size:25px;
-  margin-bottom: 20px;
+  
 }
 .card{
   background-color: white;
