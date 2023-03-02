@@ -6,8 +6,10 @@ import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 import { getCurrency,getChecked } from '../features/headerSlice';
 import {useDispatch,useSelector} from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate=useNavigate()
     const dispatch=useDispatch();
     const checkedRedux=useSelector((state:any)=>state.header.checked)
     const currencyRedux=useSelector((state:any)=>state.header.currency)
@@ -34,7 +36,7 @@ const Header = () => {
 
   return (
     <nav className='nav' style={{background:checkedRedux===false?"#f2f4f7":"#434447"}}>
-        <p className="app-title" style={{color:checkedRedux===false?"black":"white"}}>Crypto Tracker</p> 
+        <p onClick={()=>navigate("/")} className="app-title" style={{color:checkedRedux===false?"black":"white"}}>Crypto Tracker</p> 
 
         <div>
         <FormControl sx={{ m: 1, minWidth: 120 }} size="small">

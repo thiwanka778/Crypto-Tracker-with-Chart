@@ -18,6 +18,7 @@ a{
  position: fixed;
 }
 .app-title{
+  cursor: pointer;
   margin-right:auto;
   margin-left:20px;
   font-family: 'Montserrat', sans-serif;

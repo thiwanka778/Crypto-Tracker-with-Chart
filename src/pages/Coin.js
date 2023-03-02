@@ -191,7 +191,10 @@ const handleChangeCurrency = (event) => {
         
           <MenuItem value={1}>24 Hours</MenuItem>
           <MenuItem value={7}>7 Days</MenuItem>
+          <MenuItem value={14}>14 Days</MenuItem>
           <MenuItem value={30}>30 Days</MenuItem>
+          <MenuItem value={180}>6 Months</MenuItem>
+          <MenuItem value={365}>1 Year</MenuItem>
         </Select>
       </FormControl>
   </div>
@@ -206,7 +209,6 @@ const handleChangeCurrency = (event) => {
   <Backdrop
         sx={{ color:checkedRedux===false?"blue":'gold' }}
         open={loading}
-        
       >
         <CircularProgress color="inherit" size={100} />
       </Backdrop>
