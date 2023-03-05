@@ -139,11 +139,18 @@ const handleChangeCurrency = (event) => {
   setDays(event.target.value);
 };
 
+let pageLoading=false;
+if(oneCoin){
+  if(oneCoin?.id!==id){
+    pageLoading=true;
+  }
+}
 
 
 
   return (
-    <div className='coin-page' style={{background:checkedRedux===false?"white":"#161617"}}>
+    <>
+   {oneCoin.id===id ? <div className='coin-page' style={{background:checkedRedux===false?"white":"#161617"}}>
    
    <section style={{paddingLeft:"50px",paddingRight:"50px",paddingTop:"30px", display:"flex",flexDirection:"column",alignItems:"center",
   color:checkedRedux===false?"black":"white"}}>
@@ -217,7 +224,16 @@ const handleChangeCurrency = (event) => {
 
 
 
-    </div>
+    </div>:<div>
+    <Backdrop
+  sx={{ color:checkedRedux===false? 'blue':"gold"}}
+  open={pageLoading}
+  
+>
+  <CircularProgress color="inherit" size={300} />
+</Backdrop>
+      </div>}
+    </>
   )
 }
 

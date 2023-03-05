@@ -14,9 +14,13 @@ const Home = () => {
   const checkedRedux=useSelector((state:any)=>state.header.checked)
   const coins=useSelector((state:any)=>state.trending.coins)
   const [page, setPage] = React.useState<number>(1);
-  const coinNames=coins.map((item:any)=>{
-    return item.name;
-  })
+let coinNames:any[]=[];
+  if(coins && coins.length>0){
+     coinNames=coins.map((item:any)=>{
+      return item.name;
+    })
+  }
+ 
   const itemsPerPage=10; 
 
   const pageCount = Math.ceil(coins.length / itemsPerPage);
