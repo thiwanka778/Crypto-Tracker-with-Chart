@@ -145,7 +145,7 @@ const handleChangeCurrency = (event) => {
 
   return (
     <>
-   {loading===false ? <div className='coin-page' style={{background:checkedRedux===false?"white":"#161617"}}>
+   {(loading===false && oneCoin && oneCoin?.id===id)  ? <div className='coin-page' style={{background:checkedRedux===false?"white":"#161617"}}>
    
    <section style={{paddingLeft:"50px",paddingRight:"50px",paddingTop:"30px", display:"flex",flexDirection:"column",alignItems:"center",
   color:checkedRedux===false?"black":"white"}}>

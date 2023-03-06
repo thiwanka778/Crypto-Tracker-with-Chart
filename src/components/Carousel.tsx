@@ -21,7 +21,7 @@ if(currencyRedux==='USD'){
     symbol="&#8360;"
 }
 
-const items=trendingCoins.map((item:any)=>{
+const items=trendingCoins?.map((item:any)=>{
     return (
         <div onClick={()=>navigate(`/coins/${item.id}`)} style={{width:"fit-content",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center"}} key={item.id}>
             <img   style={{width:"60px"}} src={item.image} alt=""/>
