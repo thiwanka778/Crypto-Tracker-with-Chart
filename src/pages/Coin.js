@@ -139,32 +139,27 @@ const handleChangeCurrency = (event) => {
   setDays(event.target.value);
 };
 
-let pageLoading=false;
-if(oneCoin){
-  if(oneCoin?.id!==id){
-    pageLoading=true;
-  }
-}
+
 
 
 
   return (
     <>
-   {oneCoin.id===id ? <div className='coin-page' style={{background:checkedRedux===false?"white":"#161617"}}>
+   {loading===false ? <div className='coin-page' style={{background:checkedRedux===false?"white":"#161617"}}>
    
    <section style={{paddingLeft:"50px",paddingRight:"50px",paddingTop:"30px", display:"flex",flexDirection:"column",alignItems:"center",
   color:checkedRedux===false?"black":"white"}}>
-    <img style={{width:"100px",marginBottom:"10px",}} src={oneCoin.image?.large} alt=""/>
-    <p style={{fontWeight:"bold",letterSpacing:"2px",fontSize:"20px",marginBottom:"10px"}}>{oneCoin.name}</p>
+   {oneCoin &&  <img style={{width:"100px",marginBottom:"10px",}} src={oneCoin?.image?.large} alt=""/>}
+  {oneCoin &&   <p style={{fontWeight:"bold",letterSpacing:"2px",fontSize:"20px",marginBottom:"10px"}}>{oneCoin?.name}</p>}
     <p style={{marginBottom:"10px"}}>24h Change : <span 
-    style={{color:oneCoin.market_data?.price_change_percentage_24h>=0?"rgb(14,203,129)":"red",fontWeight:"bold"}}
-    >{oneCoin.market_data?.price_change_percentage_24h>=0?"+":""}{oneCoin.market_data?.price_change_percentage_24h}</span></p>
-{currencyRedux==="USD" &&<p>Current Price : &nbsp;<span  dangerouslySetInnerHTML={{ __html: symbol }}></span>&nbsp; {oneCoin.market_data?.current_price?.usd}</p>}
-{currencyRedux==="EUR" &&<p>Current Price : &nbsp;<span  dangerouslySetInnerHTML={{ __html: symbol }}></span>&nbsp; {oneCoin.market_data?.current_price?.eur}</p>}
-{currencyRedux==="LKR" &&<p>Current Price : &nbsp;<span  dangerouslySetInnerHTML={{ __html: symbol }}></span>&nbsp; {oneCoin.market_data?.current_price?.lkr}</p>}
+    style={{color:oneCoin?.market_data?.price_change_percentage_24h>=0?"rgb(14,203,129)":"red",fontWeight:"bold"}}
+    >{oneCoin?.market_data?.price_change_percentage_24h>=0?"+":""}{oneCoin?.market_data?.price_change_percentage_24h}</span></p>
+{currencyRedux==="USD" && oneCoin && <p>Current Price : &nbsp;<span  dangerouslySetInnerHTML={{ __html: symbol }}></span>&nbsp; {oneCoin?.market_data?.current_price?.usd}</p>}
+{currencyRedux==="EUR" && oneCoin && <p>Current Price : &nbsp;<span  dangerouslySetInnerHTML={{ __html: symbol }}></span>&nbsp; {oneCoin?.market_data?.current_price?.eur}</p>}
+{currencyRedux==="LKR" && oneCoin && <p>Current Price : &nbsp;<span  dangerouslySetInnerHTML={{ __html: symbol }}></span>&nbsp; {oneCoin?.market_data?.current_price?.lkr}</p>}
 
-{oneCoin.description?.en && <div style={{marginTop:"30px",fontSize:"14px",letterSpacing:"2px",marginBottom:"20px",fontFamily:" 'Poppins', sans-serif",}}>
- <span dangerouslySetInnerHTML={{ __html:oneCoin.description?.en }}></span>
+{oneCoin?.description?.en && <div style={{marginTop:"30px",fontSize:"14px",letterSpacing:"2px",marginBottom:"20px",fontFamily:" 'Poppins', sans-serif",}}>
+ <span dangerouslySetInnerHTML={{ __html:oneCoin?.description?.en }}></span>
 </div>}
 
 
@@ -227,10 +222,10 @@ if(oneCoin){
     </div>:<div>
     <Backdrop
   sx={{ color:checkedRedux===false? 'blue':"gold"}}
-  open={pageLoading}
+  open={true}
   
 >
-  <CircularProgress color="inherit" size={300} />
+  <CircularProgress color="inherit" size={100} />
 </Backdrop>
       </div>}
     </>

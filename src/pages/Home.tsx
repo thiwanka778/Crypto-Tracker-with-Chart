@@ -14,7 +14,7 @@ const Home = () => {
   const checkedRedux=useSelector((state:any)=>state.header.checked)
   const coins=useSelector((state:any)=>state.trending.coins)
   const [page, setPage] = React.useState<number>(1);
-let coinNames:any[]=[];
+let coinNames:string[]=[];
   if(coins && coins.length>0){
      coinNames=coins.map((item:any)=>{
       return item.name;

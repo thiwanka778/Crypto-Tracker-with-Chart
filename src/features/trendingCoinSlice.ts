@@ -14,7 +14,12 @@ export const getOneCoin:any = createAsyncThunk(
     'get/Onecoins',
     async (coin:any, thunkAPI) => {
       try {
-        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin}`);
+        const config = {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        };
+        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin}`,config);
         return response.data;
       } catch (error:any) {
         
@@ -26,7 +31,12 @@ export const getCoins:any = createAsyncThunk(
     'get/coins',
     async (currency:any, thunkAPI) => {
       try {
-        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.toLowerCase()}&order=market_cap_desc&per_page=100&page=1&sparkline=false`);
+        const config = {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        };
+        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.toLowerCase()}&order=market_cap_desc&per_page=100&page=1&sparkline=false`,config);
         return response.data;
       } catch (error:any) {
         
@@ -38,7 +48,12 @@ export const getTrendingCoin:any = createAsyncThunk(
     'get/trendingCoin',
     async (currency:any, thunkAPI) => {
       try {
-        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.toLowerCase()}&order=market_cap_desc&per_page=20&page=1&sparkline=false`);
+        const config = {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        };
+        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.toLowerCase()}&order=market_cap_desc&per_page=20&page=1&sparkline=false`,config);
         return response.data;
       } catch (error:any) {
         
@@ -51,7 +66,12 @@ export const getTrendingCoin:any = createAsyncThunk(
     'get/history',
     async (option:any,thunkAPI) => {
       try {
-        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${option.id}/market_chart?vs_currency=${option.currency}&days=${option.day}`);
+        const config = {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        };
+        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${option.id}/market_chart?vs_currency=${option.currency}&days=${option.day}`,config);
         return response.data;
       } catch (error:any) {
         
