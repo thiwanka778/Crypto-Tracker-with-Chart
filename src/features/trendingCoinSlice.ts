@@ -121,7 +121,7 @@ extraReducers: (builder:any) => {
        
       })
       .addCase(getOneCoin.rejected, (state:any, action:any) => {
-        state.loading=false;
+        
       })
 
 // history

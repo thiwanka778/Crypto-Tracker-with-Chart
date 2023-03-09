@@ -145,7 +145,7 @@ const handleChangeCurrency = (event) => {
 
   return (
     <>
-   {(loading===false && oneCoin && oneCoin?.id===id)  ? <div className='coin-page' style={{background:checkedRedux===false?"white":"#161617"}}>
+  <div className='coin-page' style={{background:checkedRedux===false?"white":"#161617"}}>
    
    <section style={{paddingLeft:"50px",paddingRight:"50px",paddingTop:"30px", display:"flex",flexDirection:"column",alignItems:"center",
   color:checkedRedux===false?"black":"white"}}>
@@ -202,7 +202,7 @@ const handleChangeCurrency = (event) => {
   </div>
 
 
-  {loading===false?<section className='chart'>
+  {(loading===false ) ?<section className='chart'>
    <Line
     data={data}
     options={options}
@@ -217,17 +217,7 @@ const handleChangeCurrency = (event) => {
     </div>}
  
 
-
-
-    </div>:<div>
-    <Backdrop
-  sx={{ color:checkedRedux===false? 'blue':"gold"}}
-  open={true}
-  
->
-  <CircularProgress color="inherit" size={100} />
-</Backdrop>
-      </div>}
+    </div>
     </>
   )
 }
