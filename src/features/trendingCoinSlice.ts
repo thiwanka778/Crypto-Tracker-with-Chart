@@ -100,6 +100,8 @@ extraReducers: (builder:any) => {
         state.loading=false;
       })
 
+
+
       .addCase(getCoins.pending, (state:any) => {
         state.loading=true;
       })
@@ -112,6 +114,9 @@ extraReducers: (builder:any) => {
         state.loading=false;
       })
 
+
+
+
       .addCase(getOneCoin.pending, (state:any) => {
         state.loading=true;
       })
@@ -121,7 +126,7 @@ extraReducers: (builder:any) => {
        
       })
       .addCase(getOneCoin.rejected, (state:any, action:any) => {
-        
+        state.loading=false;
       })
 
 // history

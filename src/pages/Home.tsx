@@ -14,37 +14,44 @@ const Home = () => {
   const checkedRedux=useSelector((state:any)=>state.header.checked)
   const coins=useSelector((state:any)=>state.trending.coins)
   const [page, setPage] = React.useState<number>(1);
+  const loading=useSelector((state:any)=>state.trending.loading);
 let coinNames:string[]=[];
-  if(coins && coins.length>0){
+  if(coins && coins.length>0 && loading===false){
      coinNames=coins.map((item:any)=>{
       return item.name;
     })
   }
  
   const itemsPerPage=10; 
+  let pageCount:number=10;
+if(coins && coins.length>0 && loading===false){
+   pageCount = Math.ceil(coins.length / itemsPerPage);
+}
 
-  const pageCount = Math.ceil(coins.length / itemsPerPage);
  
   const handlePageChange = (event:any, value:any) => {
     setPage(value);
   };
 // let c:number=0;
 let coinDisplay:any=[];
-if(value===null){
-  coinDisplay=coins.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((item:any)=>{
-    /*  const orderValue=itemsPerPage*(page-1)
-      let order=orderValue;
-       c=c+1;
-       order=order+c */
+if(value===null && loading===false){
+ 
+    coinDisplay=coins?.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((item:any)=>{
+      /*  const orderValue=itemsPerPage*(page-1)
+        let order=orderValue;
+         c=c+1;
+         order=order+c */
+    
+         if(value===null){
+          return (
+            <Card key={item.id} item={item}  />
+          )
+         }
+       
+      })
   
-       if(value===null){
-        return (
-          <Card key={item.id} item={item}  />
-        )
-       }
-     
-    })
-}else if(value!==null){
+
+}else if(value!==null && loading===false ){
   coinDisplay=coins.map((item:any)=>{
     if(value===item.name){
       return (
